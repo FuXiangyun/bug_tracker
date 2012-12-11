@@ -10,7 +10,12 @@ $url = "../index1.php"; ?>
 	echo "OK";
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	
+	$username = "fuxiangyun";
+	$password = "fuxiangyun";
+	
 	echo $username.$password;
+	
     $conn = mysql_connect("localhost", "root","");
     if($conn)
     {
@@ -28,6 +33,17 @@ $url = "../index1.php"; ?>
        
         //$row=mysql_fetch_row($res);
         //echo $row[0];
+		
+		$sql = "call LoginCheck('".$username."','".$password."',"."@result".");";
+		//echo $sql;
+		mysql_query($sql);
+		$result = mysql_query('select @result;');
+		$array = mysql_fetch_array($result);
+		//echo '<pre>';print_r($array);
+		if($array[0] == 1)
+		{	
+			echo "ÃÜÂëÕýÈ·";
+		}
     }
 ?>
 </body>
